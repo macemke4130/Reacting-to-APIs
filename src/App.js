@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react';
+import Card from './components/Card';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      greenLight: false
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://ghibliapi.herokuapp.com/films")
+      .then(res => res.json())
+      .then(obj => {
+        this.setState({ filmList: obj });
+        this.setState({ greenLight: true }); // Waits for the API to load to call greenLight --
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  loadFilms = () => {
+
+  }
+
+  render() {
+    if (this.state.greenLight === true) {
+      const listItems = this.state.filmList.map((flick) =>
+        <>
+          <div className="col-4">
+            <div className="card p-1 m-1">
+              <h3>{flick.title}</h3>
+              <p>{flick.description}</p>
+            </div>
+          </div>
+        </>
+      );
+      return (
+        <>
+          <Card title={listItems}></Card>
+        </>
+      )
+    } else {
+      return (
+        <h1>Loading...</h1>
+      )
+    }
+  }
 }
 
 export default App;
