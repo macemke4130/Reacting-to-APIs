@@ -1,13 +1,14 @@
 import { Component } from 'react';
 
-class Card extends Component {
+class PersonCard extends Component {
     render() {
-        return this.props.filmList.map((i) => (
+        return this.props.personsList.map((i) => (
             <>
                 <div className="col-4">
                     <div className="card shadow mb-3 p-2">
-                        <h3>{i.title}</h3>
-                        <p>{i.description}</p>
+                        <h3>{i.name}</h3>
+                        <p>{i.age}</p>
+                        <p>{i.gender}</p>
                     </div>
                 </div>
             </>
@@ -15,4 +16,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default PersonCard;
