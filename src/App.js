@@ -27,22 +27,15 @@ class App extends Component {
 
   render() {
     if (this.state.greenLight === true) {
-      const listItems = this.state.filmList.map((flick) =>
-        <>
-          <div className="col-4">
-            <div className="card p-1 m-1">
-              <h3>{flick.title}</h3>
-              <p>{flick.description}</p>
-            </div>
-          </div>
-        </>
-      );
+      const flick = this.state.filmList.map((flick) => flick);
       return (
         <>
-          <Card title={listItems}></Card>
+          <div className="row">
+            <Card filmList={flick} ></Card>
+          </div>
         </>
       )
-    } else {
+    } else { // Waiting for API to load --
       return (
         <h1>Loading...</h1>
       )
