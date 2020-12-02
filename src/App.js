@@ -71,7 +71,9 @@ class App extends Component {
       const flick = this.state.filmList.map((flick) => flick);
       return (
         <>
-          <button onClick={this.clearAll} className="btn btn-secondary">Go Back</button>
+          <div className="d-flex justify-content-center mb-2">
+            <button onClick={this.clearAll} className="btn btn-secondary">Go Back</button>
+          </div>
           <div className="row">
             <Card filmList={flick} ></Card>
           </div>
@@ -80,8 +82,9 @@ class App extends Component {
     } else if (this.state.showPersons === true) {
       const dude = this.state.personsList.map((dude) => dude);
       return (
-        <>
+        <><div className="d-flex justify-content-center mb-2">
           <button onClick={this.clearAll} className="btn btn-secondary">Go Back</button>
+        </div>
           <div className="row">
             <PersonCard personsList={dude} ></PersonCard>
           </div>
